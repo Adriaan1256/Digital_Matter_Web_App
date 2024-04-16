@@ -1,0 +1,35 @@
+﻿@page
+@model Digital_Matter_Web_App.Pages.Devices.IndexModel
+@{
+}
+
+<br>
+<h2>List of Devices</h2>
+<a class='btn btn-primary btn-sm' href='/Devices/Index1'>New Device</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Group ID</th>
+            <th>Firmware ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listDevices)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.name</td>
+                <td>@item.type</td>
+                <td>@item.groupid</td>
+                <td>@item.firmwareid</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Devices/Edit?id=@item.id">Edit</a>
+                    <a class="btn btn-primary btn-sm" href="/Devices/Delete?id=@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

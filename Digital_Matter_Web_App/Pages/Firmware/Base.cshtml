@@ -1,0 +1,32 @@
+﻿@page
+@model Digital_Matter_Web_App.Pages.Firmware.BaseModel
+@{
+}
+<br>
+<h2>List of Firmware</h2>
+<a class='btn btn-primary btn-sm' href='/Firmware/CreateNew'>New Firmware</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Version</th>
+            <th>Release Date</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listFirmware)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.version</td>
+                <td>@item.FormattedDate</td>
+                <td>@item.description</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Firmware/Edit?id=@item.id">Edit</a>
+                    <a class="btn btn-primary btn-sm" href="/Firmware/Delete?id=@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

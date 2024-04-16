@@ -1,0 +1,32 @@
+﻿@page
+@using System.Data.SqlClient;
+@{
+    try
+    {
+        String id = Request.Query["id"];
+
+        String connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=Digital_Matter_Devices;Integrated Security=True;TrustServerCertificate=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            String sql = "DELETE FROM Firmware WHERE Firmware_ID = @id";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+            }
+            String sqlReseed = "DBCC CHECKIDENT ('Firmware', RESEED)";
+            using (SqlCommand commandReseed = new SqlCommand(sqlReseed, connection))
+            {
+                commandReseed.ExecuteNonQuery();
+            }
+
+        }
+    }
+    catch
+    {
+    }
+
+    Response.Redirect("/Firmware/Base");
+}

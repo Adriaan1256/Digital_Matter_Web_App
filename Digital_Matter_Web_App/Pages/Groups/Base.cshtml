@@ -1,0 +1,30 @@
+﻿@page
+@model Digital_Matter_Web_App.Pages.Groups.BaseModel
+@{
+}
+<br>
+<h2>List of Groups</h2>
+<a class='btn btn-primary btn-sm' href='/Groups/CreateNew'>New Group</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Parent ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listGroups)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.name</td>
+                <td>@item.parentid</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Groups/Edit?id=@item.id">Edit</a>
+                    <a class="btn btn-primary btn-sm" href="/Groups/Delete?id=@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
